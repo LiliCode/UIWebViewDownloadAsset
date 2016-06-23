@@ -16,6 +16,7 @@
 		02AF39B71D1BD2AD0047F529 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02AF39B51D1BD2AD0047F529 /* LaunchScreen.storyboard */; };
 		02AF39C21D1BD2AE0047F529 /* UIWebView_SaveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AF39C11D1BD2AE0047F529 /* UIWebView_SaveTests.m */; };
 		02AF39CD1D1BD2AE0047F529 /* UIWebView_SaveUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AF39CC1D1BD2AE0047F529 /* UIWebView_SaveUITests.m */; };
+		02AF39DD1D1BD4740047F529 /* UIWebView+SaveAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AF39DC1D1BD4740047F529 /* UIWebView+SaveAsset.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		02AF39C81D1BD2AE0047F529 /* UIWebView_SaveUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UIWebView_SaveUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02AF39CC1D1BD2AE0047F529 /* UIWebView_SaveUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIWebView_SaveUITests.m; sourceTree = "<group>"; };
 		02AF39CE1D1BD2AE0047F529 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02AF39DB1D1BD4740047F529 /* UIWebView+SaveAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+SaveAsset.h"; sourceTree = "<group>"; };
+		02AF39DC1D1BD4740047F529 /* UIWebView+SaveAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+SaveAsset.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,7 @@
 		02AF39A31D1BD2AD0047F529 /* UIWebView_Save */ = {
 			isa = PBXGroup;
 			children = (
+				02AF39DA1D1BD2BE0047F529 /* WebViewSave */,
 				02AF39A71D1BD2AD0047F529 /* AppDelegate.h */,
 				02AF39A81D1BD2AD0047F529 /* AppDelegate.m */,
 				02AF39AA1D1BD2AD0047F529 /* ViewController.h */,
@@ -141,6 +145,15 @@
 				02AF39CE1D1BD2AE0047F529 /* Info.plist */,
 			);
 			path = UIWebView_SaveUITests;
+			sourceTree = "<group>";
+		};
+		02AF39DA1D1BD2BE0047F529 /* WebViewSave */ = {
+			isa = PBXGroup;
+			children = (
+				02AF39DB1D1BD4740047F529 /* UIWebView+SaveAsset.h */,
+				02AF39DC1D1BD4740047F529 /* UIWebView+SaveAsset.m */,
+			);
+			name = WebViewSave;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,6 +223,7 @@
 				TargetAttributes = {
 					02AF39A01D1BD2AD0047F529 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 6S88C5NHSC;
 					};
 					02AF39BC1D1BD2AD0047F529 = {
 						CreatedOnToolsVersion = 7.3;
@@ -273,6 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02AF39DD1D1BD4740047F529 /* UIWebView+SaveAsset.m in Sources */,
 				02AF39B21D1BD2AD0047F529 /* UIWebView_Save.xcdatamodeld in Sources */,
 				02AF39AC1D1BD2AD0047F529 /* ViewController.m in Sources */,
 				02AF39A91D1BD2AD0047F529 /* AppDelegate.m in Sources */,
@@ -419,7 +434,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = UIWebView_Save/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "quanquaner.UIWebView-Save";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -430,7 +447,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = UIWebView_Save/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "quanquaner.UIWebView-Save";
 				PRODUCT_NAME = "$(TARGET_NAME)";
