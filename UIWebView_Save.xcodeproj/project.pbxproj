@@ -17,6 +17,7 @@
 		02AF39C21D1BD2AE0047F529 /* UIWebView_SaveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AF39C11D1BD2AE0047F529 /* UIWebView_SaveTests.m */; };
 		02AF39CD1D1BD2AE0047F529 /* UIWebView_SaveUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AF39CC1D1BD2AE0047F529 /* UIWebView_SaveUITests.m */; };
 		02AF39DD1D1BD4740047F529 /* UIWebView+SaveAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AF39DC1D1BD4740047F529 /* UIWebView+SaveAsset.m */; };
+		224CDE461D1C067900E4D177 /* UIAlertView+Extesion.m in Sources */ = {isa = PBXBuildFile; fileRef = 224CDE451D1C067900E4D177 /* UIAlertView+Extesion.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		02AF39CE1D1BD2AE0047F529 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02AF39DB1D1BD4740047F529 /* UIWebView+SaveAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+SaveAsset.h"; sourceTree = "<group>"; };
 		02AF39DC1D1BD4740047F529 /* UIWebView+SaveAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+SaveAsset.m"; sourceTree = "<group>"; };
+		224CDE441D1C067900E4D177 /* UIAlertView+Extesion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Extesion.h"; sourceTree = "<group>"; };
+		224CDE451D1C067900E4D177 /* UIAlertView+Extesion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Extesion.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +155,8 @@
 			children = (
 				02AF39DB1D1BD4740047F529 /* UIWebView+SaveAsset.h */,
 				02AF39DC1D1BD4740047F529 /* UIWebView+SaveAsset.m */,
+				224CDE441D1C067900E4D177 /* UIAlertView+Extesion.h */,
+				224CDE451D1C067900E4D177 /* UIAlertView+Extesion.m */,
 			);
 			name = WebViewSave;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 			files = (
 				02AF39DD1D1BD4740047F529 /* UIWebView+SaveAsset.m in Sources */,
 				02AF39B21D1BD2AD0047F529 /* UIWebView_Save.xcdatamodeld in Sources */,
+				224CDE461D1C067900E4D177 /* UIAlertView+Extesion.m in Sources */,
 				02AF39AC1D1BD2AD0047F529 /* ViewController.m in Sources */,
 				02AF39A91D1BD2AD0047F529 /* AppDelegate.m in Sources */,
 				02AF39A61D1BD2AD0047F529 /* main.m in Sources */,
@@ -521,6 +527,7 @@
 				02AF39D31D1BD2AE0047F529 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		02AF39D41D1BD2AE0047F529 /* Build configuration list for PBXNativeTarget "UIWebView_SaveTests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +536,7 @@
 				02AF39D61D1BD2AE0047F529 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		02AF39D71D1BD2AE0047F529 /* Build configuration list for PBXNativeTarget "UIWebView_SaveUITests" */ = {
 			isa = XCConfigurationList;
@@ -537,6 +545,7 @@
 				02AF39D91D1BD2AE0047F529 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -7,6 +7,7 @@
 //
 
 #import "UIWebView+SaveAsset.h"
+#import "UIAlertView+Extesion.h"
 #import <objc/runtime.h>
 
 @interface UIWebView ()<UIGestureRecognizerDelegate>
@@ -74,6 +75,7 @@ static char *saveAssetCallbackKey = "saveAssetCallbackKey";
     
     if (urlToSave.length == 0)
     {
+        [UIAlertView message:@"不能获取该图片!"];
         return;
     }
     
