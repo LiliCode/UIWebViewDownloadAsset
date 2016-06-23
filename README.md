@@ -14,11 +14,11 @@
 #### 长按获取图片url
 
        /**
-        *  开启保存图片
+        *  获取长按图片的链接
         *
         *  @param saveAsset 保存回调
         */
-        - (void)saveImage:(void (^)(NSURL *url))saveImageCallback;
+        - (void)fetchImageUrl:(void (^)(NSURL *url))saveImageCallback;
 
 ### 使用方法
 #### 加载网页
@@ -27,6 +27,10 @@
         
 ####长按图片获取url
 
-        [self.webView saveImage:^(NSURL *url) {
+        [self.webView fetchImageUrl:^(NSURL *url) {
             //你要处理的事
         }];
+        
+####直接保存图片
+
+       [self.webView fetchImageUrl:nil];
