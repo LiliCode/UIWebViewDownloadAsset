@@ -10,6 +10,7 @@
 
 @interface UIWebView (SaveAsset)
 
+
 /**
  *  加载链接
  *
@@ -18,10 +19,19 @@
 - (void)loadUrlString:(NSString *)url;
 
 /**
- *  开启保存图片
+ *  获取图片url
  *
  *  @param saveAsset 保存回调
  */
-- (void)saveImage:(void (^)(NSURL *url))saveImageCallback;
+- (void)fetchImageUrl:(void (^)(NSURL *url))saveImageCallback;
+
+/**
+ *  图片保存成功调用 虚函数
+ *
+ *  @param image       图片
+ *  @param error       错误详情
+ *  @param contextInfo 上下文信息
+ */
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
 
 @end

@@ -23,7 +23,8 @@
     [self.webView loadUrlString:@"http://image.baidu.com/"];
     
     __weak typeof(self) weakSelf = self;
-    [self.webView saveImage:^(NSURL *url) {
+#if 0
+    [self.webView fetchImageUrl:^(NSURL *url) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"保存图片" message:[url absoluteString] preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *save = [UIAlertAction actionWithTitle:@"保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [weakSelf downloadUrl:url];
@@ -35,6 +36,9 @@
         [alert addAction:cancel];
         [self presentViewController:alert animated:YES completion:nil];
     }];
+#else
+    [self.webView fetchImageUrl:nil];
+#endif
 }
 
 

@@ -12,12 +12,14 @@
 
 @interface UIWebView ()<UIGestureRecognizerDelegate>
 @property (copy, nonatomic) void (^saveAssetCallback)(NSURL *url);
+@property (strong , nonatomic) UILongPressGestureRecognizer *longPress;
 
 @end
 
 @implementation UIWebView (SaveAsset)
 
 static char *saveAssetCallbackKey = "saveAssetCallbackKey";
+static char *longPressKey = "longPressKey";
 
 - (void)setSaveAssetCallback:(void (^)(NSURL *))saveAssetCallback
 {
@@ -27,6 +29,44 @@ static char *saveAssetCallbackKey = "saveAssetCallbackKey";
 - (void (^)(NSURL *))saveAssetCallback
 {
     return objc_getAssociatedObject(self, &saveAssetCallbackKey);
+}
+
+- (void)setLongPress:(UILongPressGestureRecognizer *)longPress
+{
+    objc_setAssociatedObject(self, &longPressKey, longPress, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UILongPressGestureRecognizer *)longPress
+{
+    return objc_getAssociatedObject(self, &longPressKey);
+}
+
+- (void)grLongPress
+{
+    static dispatch_once_t token;
+    dispatch_once(&token, ^{
+        self.longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];
+        self.longPress.delegate = self;
+    });
+}
+
+- (void)addLongPress
+{
+    [self grLongPress];
+    BOOL isAddGr = NO;
+    for (UIGestureRecognizer *gr in self.gestureRecognizers)
+    {
+        if ([gr isEqual:self.longPress])
+        {
+            isAddGr = YES;  //已添加
+            break;
+        }
+    }
+    
+    if (!isAddGr)
+    {
+        [self addGestureRecognizer:self.longPress];
+    }
 }
 
 - (void)loadUrlString:(NSString *)url
@@ -43,19 +83,18 @@ static char *saveAssetCallbackKey = "saveAssetCallbackKey";
     [self loadRequest:request];
 }
 
-- (void)saveImage:(void (^)(NSURL *))saveImageCallback
+
+- (void)fetchImageUrl:(void (^)(NSURL *))saveImageCallback
 {
     //设置长按手势
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];
-    longPress.delegate = self;
-    [self addGestureRecognizer:longPress];
+    [self addLongPress];
     
-    self.saveAssetCallback = ^(NSURL *url){
-        if(saveImageCallback)
-        {
+    if(saveImageCallback)
+    {
+        self.saveAssetCallback = ^(NSURL *url){
             saveImageCallback(url);
-        }
-    };
+        };
+    }
 }
 
 - (void)longPressAction:(UILongPressGestureRecognizer *)recognizer
@@ -79,7 +118,7 @@ static char *saveAssetCallbackKey = "saveAssetCallbackKey";
         return;
     }
     
-    [self download:urlToSave];
+    [self passUrl:urlToSave];
 }
 
 /**
@@ -87,12 +126,26 @@ static char *saveAssetCallbackKey = "saveAssetCallbackKey";
  *
  *  @param url 图片链接
  */
-- (void)download:(NSString *)url
+- (void)passUrl:(NSString *)url
 {
     if(self.saveAssetCallback)
     {
         //回调
         self.saveAssetCallback([NSURL URLWithString:url]);
+    }
+    else
+    {
+        //直接保存图片
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"保存图片" message:url preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *save = [UIAlertAction actionWithTitle:@"保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self downloadImage:[NSURL URLWithString:url]];
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        [alert addAction:save];
+        [alert addAction:cancel];
+        [(UIViewController *)self.delegate presentViewController:alert animated:YES completion:nil];
     }
 }
 
@@ -100,6 +153,28 @@ static char *saveAssetCallbackKey = "saveAssetCallbackKey";
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     return YES;
+}
+
+- (void)downloadImage:(NSURL *)url
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 2), ^{
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *image = [UIImage imageWithData:data];
+        UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    });
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    if(error)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"保存失败" message:error.description delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alertView show];
+    }
+    else
+    {
+        [UIAlertView message:@"图片已保存至相册"];
+    }
 }
 
 
