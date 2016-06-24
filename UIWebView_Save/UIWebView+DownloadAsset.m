@@ -6,7 +6,7 @@
 //  Copyright © 2016年 圈圈科技. All rights reserved.
 //
 
-#import "UIWebView+SaveAsset.h"
+#import "UIWebView+DownloadAsset.h"
 #import "UIAlertView+Extesion.h"
 #import <objc/runtime.h>
 
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation UIWebView (SaveAsset)
+@implementation UIWebView (DownloadAsset)
 
 static char *saveAssetCallbackKey = "saveAssetCallbackKey";
 static char *longPressKey = "longPressKey";

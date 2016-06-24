@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIWebView (SaveAsset)
+@interface UIWebView (DownloadAsset)
 
 
 /**

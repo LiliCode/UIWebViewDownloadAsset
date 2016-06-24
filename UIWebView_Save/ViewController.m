@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "UIWebView+SaveAsset.h"
+#import "UIWebView+DownloadAsset.h"
 
 @interface ViewController ()<UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
