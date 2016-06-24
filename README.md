@@ -33,4 +33,4 @@
         
 ####直接保存图片
 
-       [self.webView fetchImageUrl:nil];
+       [self.webView downloadImage];
