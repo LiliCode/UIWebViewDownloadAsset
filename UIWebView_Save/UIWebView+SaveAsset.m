@@ -157,11 +157,18 @@ static char *longPressKey = "longPressKey";
 
 - (void)downloadImage:(NSURL *)url
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 2), ^{
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        UIImage *image = [UIImage imageWithData:data];
+    //网络活动指示器可见
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    NSURLSessionDownloadTask *downloadTask = [[NSURLSession sharedSession] downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        //取消活动指示器
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        //获取图片
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
         UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-    });
+    }];
+    
+    //开始下载
+    [downloadTask resume];
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
