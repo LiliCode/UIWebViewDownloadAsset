@@ -26,6 +26,11 @@
 - (void)fetchImageUrl:(void (^)(NSURL *url))saveImageCallback;
 
 /**
+ *  下载图片
+ */
+- (void)downloadImage;
+
+/**
  *  图片保存成功调用 虚函数
  *
  *  @param image       图片

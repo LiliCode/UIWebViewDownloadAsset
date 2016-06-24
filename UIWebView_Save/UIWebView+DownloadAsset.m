@@ -97,6 +97,11 @@ static char *longPressKey = "longPressKey";
     }
 }
 
+- (void)downloadImage
+{
+    [self fetchImageUrl:nil];
+}
+
 - (void)longPressAction:(UILongPressGestureRecognizer *)recognizer
 {
     //只在长按手势开始的时候才去获取图片的url

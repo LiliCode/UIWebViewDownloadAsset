@@ -37,7 +37,7 @@
         [self presentViewController:alert animated:YES completion:nil];
     }];
 #else
-    [self.webView fetchImageUrl:nil];
+    [self.webView downloadImage];
 #endif
 }
 
