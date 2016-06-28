@@ -26,11 +26,11 @@
         [self.webView loadUrlString:@"http://image.baidu.com/"];
         
 ####长按图片获取url
-
+        self.webView.delegate = self;  //设置代理
         [self.webView fetchImageUrl:^(NSURL *url) {
             //你要处理的事
         }];
         
 ####直接保存图片
-
+       self.webView.delegate = self;  //设置代理
        [self.webView downloadImage];
